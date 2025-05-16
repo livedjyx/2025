@@ -188,26 +188,9 @@
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 修改为响应式布局 */
             gap: 2rem;
             row-gap: 3rem;
-        }
-
-        @media (max-width: 768px) {
-            .project-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-                row-gap: 2rem;
-            }
-
-            .project-card {
-                width: 100%;
-                margin-bottom: 1.5rem;
-            }
-
-            .project-image {
-                aspect-ratio: 16/9;
-            }
         }
 
         .project-card {
