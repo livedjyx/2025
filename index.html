@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madelyn Torff - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Nunito:wght@400;500;700&family=Playfair+Display:wght@700&family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #F9FAFF;
+            --text-primary: #25282B;
+            --text-secondary: #828282;
+            --accent: #FDC435;
+            --shadow: 0px 6px 64px rgba(112, 144, 176, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: var(--accent); /* 使用按钮相同的黄色 */
+            padding: 1.5rem 10%; /* 微调间距适配固定定位 */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 添加阴影增强可视性 */
+        }
+
+        body {
+            margin-top: 6rem; /* 为固定导航栏留出空间 */
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: none; /* 移除宽度限制 */
+        }
+
+        .logo {
+            flex-shrink: 0; /* 防止logo被压缩 */
+            font-family: 'Comfortaa', cursive;
+            font-size: 1.125rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            margin-left: auto; /* 关键样式：强制右侧对齐 */
+        }
+
+        .nav-link {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-primary);
+            left: 0;
+            bottom: -5px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .nav-link:hover::after {
+            opacity: 1;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 10%;
+            min-height: 100vh;
+            justify-content: center; /* 垂直居中 */
+            align-items: flex-start; /* 修改为左对齐 */
+        }
+
+        .role {
+            font-size: 1.5rem; /* 放大职业标签字体 */
+        }
+
+        .hero-title {
+            font-size: 4.5rem; /* 增加标题视觉冲击力 */
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: flex-start; /* 保持内容左对齐 */
+        }
+
+        .description {
+            font-size: 1.75rem; /* 提升描述文本可读性 */
+            margin-bottom: 2rem; /* 增加与按钮的间距 */
+        }
+
+        .buttons {
+            display: flex;
+            gap: 2rem; /* 增加按钮间距 */
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            text-align: center; /* 文本居中 */
+            padding: 0.75rem 2rem;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none; /* 移除所有按钮的下划线 */
+            &:hover, &:active, &:focus {
+                text-decoration: none; /* 强制保持无下划线状态 */
+                text-align: center; /* 保持所有状态下的居中 */
+            }
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--text-primary);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #fcb700;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--text-primary);
+            color: white;
+        }
+
+        .projects {
+            padding: 5rem 10%;
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .projects-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 修改为响应式布局 */
+            gap: 2rem;
+            row-gap: 3rem;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            row-gap: 3rem;
+        }
+
+        .tool-card {
+            background-color: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .tool-card {
+                width: 100%;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.25rem;
+            color: #aaa;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .project-desc {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .project-link {
+            align-self: flex-start;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 1.5rem;
+            border: 1px solid var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background-color: var(--text-primary);
+            color: white;
+        }
+
+        .tools {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5rem 10%;
+        }
+
+        .tool-grid {
+            flex-grow: 1; /* 让工具网格区域填充剩余空间 */
+        }
+
+        footer {
+            margin-top: auto; /* 将页脚推到最底部 */
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-primary);
+            transition: fill 0.3s ease;
+        }
+
+        .social-icon:hover {
+            fill: #555;
+        }
+
+        .copyright {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                margin: 2rem auto;
+                padding: 0 5%;
+            }
+
+            .projects-header, .tools-header {
+                text-align: center;
+            }
+
+            .project-card, .tool-card {
+                width: 100%;
+            }
+
+            .project-image {
+                height: auto;
+                aspect-ratio: 16/9;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+
+        .hero, .projects, .tools {
+            min-height: 100vh; /* 每一屏的高度要占页面的100% */
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .tool-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .tool-info p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        /* 禁用特定按钮交互效果 */
+        .hero-content .btn {
+            pointer-events: none;
+            opacity: 1; /* 保持原有视觉状态 */
+            /* 保留悬停效果但禁用交互 */
+            &:hover, &:active, &:focus {
+                text-decoration: none;
+                transform: none;
+            }
+        }
+        
+        /* 恢复导航栏链接默认样式 */
+        .nav-link {
+            /* 移除可能存在的自定义样式干扰 */
+            transition: none;
+        }
+
+        /* 新增移动端优化样式 */
+        @media (max-width: 768px) {
+            .project-card {
+                width: 100%; /* 手机端卡片全宽显示 */
+                margin-bottom: 2rem;
+            }
+            
+            .project-image {
+                height: auto; /* 保持图片比例 */
+                aspect-ratio: 16/9; /* 添加固定比例 */
+            }
+            
+            .project-title {
+                font-size: 1.75rem; /* 适当调整字体大小 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo">K姐研究社</div>
+            <nav class="nav-links">
+                <a href="#hero" class="nav-link">关于</a>
+                <a href="#projects" class="nav-link">文章</a>
+                <a href="#tools" class="nav-link">工具</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 第一屏 -->
+    <section class="hero" id="hero">
+        <div class="role">AI爱好者</div>
+        <h1 class="hero-title">大家好，这里是K姐</h1>
+        <div class="hero-content">
+            <p class="description">
+                一个帮助你把AI真正用起来的女子
+            </p>
+        </div>
+    </section>
+
+    <!-- 第二屏 -->
+    <section class="projects" id="projects">
+        <h2 class="projects-header">我的文章</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/project1.jpg" alt="项目开发示例图" style="width:100%; height:200px; object-fit:cover;">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">文科生的我用DeepSeek+AI程序员半小时开发了一个小程序</h3>
+                    <p class="project-desc">
+                        上线了我的第一个小程序
+                    </p>
+                    <a href="https://mp.weixin.qq.com/s/mGaQn6rWQtfylNYGfQu0Eg" class="project-link">查看原文</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/project2.jpg" alt='假期测试完豆包最新图像生成能力，我只能说："太强啦！"' style="width:100%; height:200px; object-fit:cover;">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">假期测试完豆包最新图像生成能力，我只能说："太强啦！"</h3>
+                    <p class="project-desc">
+                        超能创意1.0，牛的！
+                    </p>
+                    <a href="https://mp.weixin.qq.com/s/cJ1Bp0HBus5Rjb7gu_-aEg" class="project-link">查看原文</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/project3.jpg" alt="视频制作示例图" style="width:100%; height:200px; object-fit:cover;">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">用可灵2.0拍电影？我试着做了一个1分钟短片</h3>
+                    <p class="project-desc">
+                        人人都可以做导演的时代，真的来了。
+                    </p>
+                    <a href="https://mp.weixin.qq.com/s/UXxD3uREZgHQx3B31f6V2g" class="project-link">查看原文</a>
+                </div>
+            </div>
+
+            <!-- 新增卡片1 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/zp.png" alt="用全网爆火的\"平凡无奇\"iPhone自拍图，我发现了新的玩法！" style="width:100%; height:200px; object-fit:cover;">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">用全网爆火的"平凡无奇"iPhone自拍图，我发现了新的玩法！</h3>
+                    <p class="project-desc">
+                        AI生图的真实感，我悟了！
+                    </p>
+                    <a href="https://mp.weixin.qq.com/s/aVrmITrNNkZwOAWvJgaLdA" class="project-link">查看原文</a>
+                </div>
+            </div>
+
+            <!-- 新增卡片2 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/manus.png" alt="数据分析示例图" style="width:100%; height:200px; object-fit:cover;">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Manus深度体验，10个Case告诉你通用型Agent能做什么？</h3>
+                    <p class="project-desc">
+                        Manus 对所有用户开放
+                    </p>
+                    <a href="https://mp.weixin.qq.com/s/laPjVx1GPpRbZL79NOXvCQ" class="project-link">查看原文</a>
+                </div>
+            </div>
+
+            <!-- 新增卡片3 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/lnn.png" alt="办公自动化示例图" style="width:100%; height:200px; object-fit:cover;">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">爆款思路公开，2分钟学会AI制作治愈系老奶奶文案+漫画</h3>
+                    <p class="project-desc">
+                        流量密码
+                    </p>
+                    <a href="https://mp.weixin.qq.com/s/tPutZ7yA65Vk2gZ6nfd1cA" class="project-link">查看原文</a>
+                </div>
+            </div>
+
+            <!-- 新增卡片4 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/jbl.png" alt="AI生成吉卜力风格图片示例图" style="width:100%; height:200px; object-fit:cover;">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">AI生成吉卜力风格图片，我找到了7个GPT-4o平替工具</h3>
+                    <p class="project-desc">
+                        用宫崎骏的视角看世界
+                    </p>
+                    <a href="https://mp.weixin.qq.com/s/pgz9ZJUDnoB7y4AeJmdNkg" class="project-link">查看原文</a>
+                </div>
+            </div>
+
+            <!-- 新增卡片5 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/sk.png" alt="DeepSeek互动小游戏示例图" style="width:100%; height:200px; object-fit:cover;">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">DeepSeek-V3更新炸场，我连夜做了3个互动小游戏</h3>
+                    <p class="project-desc">
+                        好玩！爱玩！
+                    </p>
+                    <a href="https://mp.weixin.qq.com/s/kHupA9UsUNW4LX6IFAUbdw" class="project-link">查看原文</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 第三屏 -->
+    <section class="tools" id="tools">
+        <h2 class="projects-header">推荐工具</h2>
+        <div class="tool-grid">
+            <!-- 第一个工具卡 -->
+            <div class="tool-card">
+                <a href="https://lingma.aliyun.com/lingma?utm_content=m_1000399943" target="_blank" style="position: absolute; inset: 0; z-index: 20;"></a>
+                <div style="margin-bottom: -1.5rem; z-index: 10;">
+                    <a href="#" class="btn btn-primary">AI编程</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;">
+                    <img src="images/通义灵码.png" alt="通义灵码图标" style="width: 64px; height: 64px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="tool-info">
+                        <h3>通义灵码</h3>
+                        <p>全面升级！智能体+Qwen 3系列模型，高效开发</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二个工具卡 -->
+            <div class="tool-card">
+                <a href="https://www.trae.com.cn/?utm_source=advertising&utm_medium=aibot_ug_cpa&utm_term=hw_trae_aibot" target="_blank" style="position: absolute; inset: 0; z-index: 20;"></a>
+                <div style="margin-bottom: -1.5rem; z-index: 10;">
+                    <a href="#" class="btn btn-primary">AI编程</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;">
+                    <img src="images/Trae.png" alt="Trae图标" style="width: 64px; height: 64px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="tool-info">
+                        <h3>Trae</h3>
+                        <p>基于Claude模型</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第三个工具卡 -->
+            <div class="tool-card">
+                <a href="https://comate.baidu.com/zh?inviteCode=8f8or9cz" target="_blank" style="position: absolute; inset: 0; z-index: 20;"></a>
+                <div style="margin-bottom: -1.5rem; z-index: 10;">
+                    <a href="#" class="btn btn-primary">AI编程</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;">
+                    <img src="images/文心快码.jpg" alt="文心快码图标" style="width: 64px; height: 64px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="tool-info">
+                        <h3>文心快码</h3>
+                        <p>基于文心大模型</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新增卡片1 -->
+            <div class="tool-card">
+                <a href="https://tusiart.com/?utm_source=ai_bot&source_id=ai_bot" target="_blank" style="position: absolute; inset: 0; z-index: 20;"></a>
+                <div style="margin-bottom: -1.5rem; z-index: 10;">
+                    <a href="#" class="btn btn-primary">AI绘画</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;">
+                    <img src="images/吐司.png" alt="吐司图标" style="width: 64px; height: 64px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="tool-info">
+                        <h3>吐司AI</h3>
+                        <p>基于Stable Diffusion和ComfyUI免费生图</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新增卡片2 -->
+            <div class="tool-card">
+                <a href="https://dis.csqixiang.cn/unpo/dbguo.html" target="_blank" style="position: absolute; inset: 0; z-index: 20;"></a>
+                <div style="margin-bottom: -1.5rem; z-index: 10;">
+                    <a href="#" class="btn btn-primary">AI绘画</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;">
+                    <img src="images/豆包.png" alt="豆包图标" style="width: 64px; height: 64px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="tool-info">
+                        <h3>豆包</h3>
+                        <p>超能创意1.0，批量生图</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新增卡片3 -->
+            <div class="tool-card">
+                <a href="https://www.youchuan.cn/?utm_source=ai-bot.cn" target="_blank" style="position: absolute; inset: 0; z-index: 20;"></a>
+                <div style="margin-bottom: -1.5rem; z-index: 10;">
+                    <a href="#" class="btn btn-primary">AI绘画</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;">
+                    <img src="images/悠船.png" alt="悠船图标" style="width: 64px; height: 64px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="tool-info">
+                        <h3>悠船</h3>
+                        <p>Midjourney官方中文站，电影级画质</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新增卡片4 -->
+            <div class="tool-card">
+                <a href="https://app.klingai.com/cn/" target="_blank" style="position: absolute; inset: 0; z-index: 20;"></a>
+                <div style="margin-bottom: -1.5rem; z-index: 10;">
+                    <a href="#tools" class="btn btn-primary">AI视频</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;">
+                    <img src="images/可灵.png" alt="可灵图标" style="width: 64px; height: 64px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="tool-info">
+                        <h3>可灵</h3>
+                        <p>还原现实时间的运动规律</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新增卡片5 -->
+            <div class="tool-card">
+                <a href="https://aibrm.com/?code=fx_cda" target="_blank" style="position: absolute; inset: 0; z-index: 20;"></a>
+                <div style="margin-bottom: -1.5rem; z-index: 10;">
+                    <a href="#tools" class="btn btn-primary">AI视频</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;">
+                    <img src="images/白日梦.jpg" alt="白日梦图标" style="width: 64px; height: 64px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="tool-info">
+                        <h3>白日梦</h3>
+                        <p>输入脚本，一键创建小说分镜</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新增卡片6 -->
+            <div class="tool-card">
+                <a href="https://hailuoai.com/video?utm_source=ai-bot.cn" target="_blank" style="position: absolute; inset: 0; z-index: 20;"></a>
+                <div style="margin-bottom: -1.5rem; z-index: 10;">
+                    <a href="#tools" class="btn btn-primary">AI视频</a>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem; padding: 0.5rem 1.5rem;">
+                    <img src="images/海螺AI.jpg" alt="海螺AI图标" style="width: 64px; height: 64px; object-fit: cover; border-radius: 0.5rem;">
+                    <div class="tool-info">
+                        <h3>海螺AI</h3>
+                        <p>毫米级微表情还原，超级细节控！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 移动页脚到此处 -->
+        <footer class="footer-in-tools">
+            <div class="social-icons" style="justify-content: center;">
+                <a href="#"><svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058 1.644.07 4.85.07 3.204 0 3.584-.012 4.849-.07 4.997-.232 6.759-2.005 6.947-6.99.128-.046 1.687-.06 4.947-.06 3.26 0 3.668-.014 4.948-.06 4.991-.231 6.751-2.009 6.989-6.99.046-1.28.06-1.687.06-4.948 0-3.26-.014-3.667-.06-4.947-.238-4.989-2.009-6.759-6.99-6.99-1.281-.045-1.688-.06-4.948-.06zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                <a href="#"><svg class="social-icon" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9.227h3.414v1.523h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9.227h3.564v11.245zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></a>
+                <a href="#"><svg class="social-icon" viewBox="0 0 24 24"><path d="M22 4H2C0.895 4 0 4.895 0 6v12c0 1.105.895 2 2 2h20c1.105 0 2-.895 2-2V6c0-1.105-.895-2-2-2zm7.247 17.587l-2.247-2.247V6.413h2.247v8.927zM6 5.587h2.413v1.827H6v-1.827zM18 17.587H9.753v-5.055l2.753 2.753v1.302h5.494v-4.094l2.753-2.753v8.847z"/></svg></a>
+            </div>
+            <div class="copyright" style="text-align: center;">K姐研究社 2025</div>
+        </footer>
+    </section>
+
+</body>
+</html>
