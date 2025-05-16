@@ -188,9 +188,9 @@
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 修改为响应式布局 */
+            grid-template-columns: repeat(4, 1fr); /* 固定4列布局 */
             gap: 2rem;
-            row-gap: 3rem;
+            row-gap: 3rem; /* 增加行间距保持视觉平衡 */
         }
 
         .project-card {
@@ -376,23 +376,6 @@
         .nav-link {
             /* 移除可能存在的自定义样式干扰 */
             transition: none;
-        }
-
-        /* 新增移动端优化样式 */
-        @media (max-width: 768px) {
-            .project-card {
-                width: 100%; /* 手机端卡片全宽显示 */
-                margin-bottom: 2rem;
-            }
-            
-            .project-image {
-                height: auto; /* 保持图片比例 */
-                aspect-ratio: 16/9; /* 添加固定比例 */
-            }
-            
-            .project-title {
-                font-size: 1.75rem; /* 适当调整字体大小 */
-            }
         }
     </style>
 </head>
