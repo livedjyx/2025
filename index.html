@@ -175,7 +175,7 @@
             display: flex;
             flex-direction: column;
             gap: 5rem;
-            width: 100%;
+            width: 100%; /* 修改为100%宽度 */
             margin: 0 auto;
         }
 
@@ -188,36 +188,26 @@
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 修改为响应式布局 */
-            gap: 2rem;
-            row-gap: 3rem;
-        }
-
-        .tool-grid {
-            display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             row-gap: 3rem;
         }
 
-        .tool-card {
-            background-color: white;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-            margin-bottom: 2rem;
-        }
-
         @media (max-width: 768px) {
-            .tool-card {
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                row-gap: 2rem;
+            }
+
+            .project-card {
                 width: 100%;
                 margin-bottom: 1.5rem;
             }
-        }
 
-        .tool-card:hover {
-            transform: translateY(-5px);
+            .project-image {
+                aspect-ratio: 16/9;
+            }
         }
 
         .project-card {
@@ -279,11 +269,11 @@
         }
 
         .tools {
-            min-height: 100vh;
+            min-height: 100vh; /* 确保第三屏高度为100% */
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 5rem 10%;
+            justify-content: space-between; /* 垂直分布工具卡片和页脚 */
+            padding: 5rem 10%; /* 调整上下边距 */
         }
 
         .tool-grid {
@@ -319,31 +309,51 @@
         @media (max-width: 768px) {
             .hero {
                 margin: 2rem auto;
-                padding: 0 5%;
             }
 
-            .projects-header, .tools-header {
-                text-align: center;
+            .hero-title {
+                font-size: 2.5rem;
             }
 
-            .project-card, .tool-card {
-                width: 100%;
+            .projects-header {
+                font-size: 2.25rem;
             }
 
-            .project-image {
-                height: auto;
-                aspect-ratio: 16/9;
+            .project-info {
+                padding: 1rem;
             }
 
-            .nav-links {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+            .project-title {
+                font-size: 2rem;
             }
         }
 
         .hero, .projects, .tools {
             min-height: 100vh; /* 每一屏的高度要占页面的100% */
+        }
+
+        .tool-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background-color: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            width: calc(33.333% - 1.5rem); /* 3列布局计算 */
+            margin-bottom: 2rem; /* 保持垂直间距 */
+        }
+
+        @media (max-width: 768px) {
+            .tool-card {
+                width: 100%; /* 移动端单列显示 */
+                margin-bottom: 1.5rem;
+            }
         }
 
         .tool-card:hover {
